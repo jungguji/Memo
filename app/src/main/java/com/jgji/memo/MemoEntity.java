@@ -15,5 +15,11 @@ public class MemoEntity {
         this.memo = memo;
     }
 
+    public long getId() {
+        return this.id;
+    }
 
+    public String getMemo() {
+        return this.memo;
+    }
 }
