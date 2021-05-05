@@ -15,10 +15,12 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private final Context context;
     private final List<MemoEntity> list;
+    private final DeleteListener deleteListener;
 
-    public MyAdapter(Context context, List<MemoEntity> memoEntities) {
+    public MyAdapter(Context context, List<MemoEntity> memoEntities, DeleteListener deleteListener) {
         this.context = context;
         this.list = memoEntities;
+        this.deleteListener = deleteListener;
     }
 
     @NonNull
@@ -35,8 +37,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         MemoEntity memo = list.get(position);
 
         holder.memo.setText(memo.getMemo());
-        holder.root.setOnLongClickListener(v -> true);
+        holder.root.setOnLongClickListener(v -> {
+            deleteListener.onDeleteListener(memo);
+            return true;
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
