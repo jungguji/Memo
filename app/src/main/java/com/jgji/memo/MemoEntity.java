@@ -7,15 +7,15 @@ import androidx.room.PrimaryKey;
 public class MemoEntity {
 
     @PrimaryKey(autoGenerate = true)
-    private final long id;
+    private final Long id;
     private final String memo;
 
-    public MemoEntity(long id, String memo) {
+    public MemoEntity(Long id, String memo) {
         this.id = id;
         this.memo = memo;
     }
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
