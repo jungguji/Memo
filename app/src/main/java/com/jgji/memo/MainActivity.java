@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -35,7 +36,10 @@ public class MainActivity extends Activity implements DeleteListener{
         button.setOnClickListener(v -> {
             final MemoEntity memo = new MemoEntity(null, editText.getText().toString());
             insertMemo(memo);
+
+            Toast.makeText(this, memo.getMemo(), Toast.LENGTH_SHORT).show();
         });
+
 
         recyclerView = findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -79,6 +83,7 @@ public class MainActivity extends Activity implements DeleteListener{
 
             protected void onPostExecute(Object result) {
                 super.onPostExecute(result);
+                Toast.makeText(getApplicationContext(), "삭제 되었습니다!", Toast.LENGTH_LONG).show();
                 getAllMemos();
             }
         };
